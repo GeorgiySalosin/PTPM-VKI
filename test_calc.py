@@ -4,7 +4,7 @@ from calculator import Calculator
 
 @pytest.fixture
 def calc():
-    """Фикстура, создающая экземпляр калькулятора для каждого теста."""
+    """Fixture that auto-creates calc instance for tests"""
     return Calculator()
 
 
