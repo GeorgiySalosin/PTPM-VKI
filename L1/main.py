@@ -34,7 +34,9 @@ def setup_logging(log_dir: str = "logs", log_file: str = "file_txt.log") -> logg
 
 def solve(s1: str, s2: str, s3: str):
     """
-    Defines triangle type, calculates vertex coordinates.
+    Defines triangle type, calculates vertex coordinates. \n\n
+    Return coordinates: \n\t NaN: [(-2, -2), (-2, -2), (-2, -2)] ; 
+    \n\t Invalid number values: [(-1, -1), (-1, -1), (-1, -1)] ; 
     """
     logger = logging.getLogger(__name__)
 
@@ -66,7 +68,7 @@ def solve(s1: str, s2: str, s3: str):
         return "Not a triangle", coords
     if a <= 0 or b <= 0 or c <= 0:
         logger.warning(
-            "Non-natural values: a=%s, b=%s, c=%s", a, b, c,
+            "Non-positive values: a=%s, b=%s, c=%s", a, b, c,
         )
         return "Not a triangle", coords
 
@@ -96,7 +98,7 @@ def solve(s1: str, s2: str, s3: str):
     available = field_size - 2 * margin
 
     max_side = max(a, b, c)
-    scale = available / max_side if max_side > 0 else 1.0
+    scale = available / max_side
     sa, sb, sc = a * scale, b * scale, c * scale
 
     x1, y1 = float(margin), float(field_size - margin)
@@ -131,6 +133,9 @@ def main():
         ("-1", "2", "3"),
         ("abc", "2", "3"),
         ("1.5", "2.5", "3.0"),
+        ("0", "1", "1"),
+        ("inf", "1", "1"),
+        ("nan", "1", "1")
     ]
 
     for s1, s2, s3 in tests:
