@@ -40,7 +40,8 @@ def solve(s1: str, s2: str, s3: str):
 
     coords = [(-2, -2), (-2, -2), (-2, -2)]
 
-    # --- NaN ---
+# NaN 
+
     try:
         a = float(s1)
         b = float(s2)
@@ -55,7 +56,8 @@ def solve(s1: str, s2: str, s3: str):
 
     coords = [(-1, -1), (-1, -1), (-1, -1)]
 
-    # --- Infinity + naturality ---
+# Infinity + naturality 
+
     if not (math.isfinite(a) and math.isfinite(b) and math.isfinite(c)):
         logger.warning(
             "NaN/Inf values parsed: a=%s, b=%s, c=%s",
@@ -68,24 +70,27 @@ def solve(s1: str, s2: str, s3: str):
         )
         return "Not a triangle", coords
 
-    # --- Triangle equality principle ---
-    eps = 1e-9
-    if (a + b <= c + eps) or (a + c <= b + eps) or (b + c <= a + eps):
+# Triangle equality principle 
+
+    if (a + b <= c ) or (a + c <= b) or (b + c <= a):
         logger.warning(
             "Triangle equality is not respected: a=%s, b=%s, c=%s",
             a, b, c,
         )
         return "Not a triangle", coords
 
-    # --- 4. Определение типа треугольника ---
-    if abs(a - b) < eps and abs(b - c) < eps:
+# Define triangle type
+
+    if a == b and b == c:
         tri_type = "Equilateral (равносторонний)"
-    elif abs(a - b) < eps or abs(b - c) < eps or abs(a - c) < eps:
+    elif a==b or b==c or a==c:
         tri_type = " Isosceles (равнобедренный)"
     else:
         tri_type = "Scalene (разносторонний)"
 
-    # --- 5. Calculate coordinates ---
+
+ # --- 5. Calculate coordinates ---
+
     margin = 10
     field_size = 100
     available = field_size - 2 * margin
