@@ -155,6 +155,29 @@ def main():
             )
             logger.debug("Traceback:\n%s", traceback.format_exc())
 
+    while True:
+
+        a = input()
+        b = input()
+        c = input()
+
+        params = {"string1": a, "string2": b, "string3": c}
+        try:
+            tri_type, coords = solve(a, b, c)
+        
+            logger.info(
+                "Success | Params: %s | Result: Type='%s', Coords=%s",
+                params, tri_type, coords,
+            )
+        except Exception as e:
+            
+            logger.error(
+                "Failed | Params: %s | Exception: %s",
+                params, e,
+            )
+            logger.debug("Traceback:\n%s", traceback.format_exc())
+
+            
 
 if __name__ == "__main__":
     main()
