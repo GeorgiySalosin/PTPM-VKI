@@ -40,8 +40,7 @@ def solve(s1: str, s2: str, s3: str):
     """
     logger = logging.getLogger(__name__)
 
-    nan_coords = [(-2, -2), (-2, -2), (-2, -2)]
-    invalid_coords = [(-1, -1), (-1, -1), (-1, -1)]
+    coords = [(-2, -2), (-2, -2), (-2, -2)]
 
 # NaN 
 
@@ -55,23 +54,23 @@ def solve(s1: str, s2: str, s3: str):
             s1, s2, s3, e,
         )
         logger.debug("Traceback:\n%s", traceback.format_exc())
-        return "", nan_coords
+        return "", coords
+
+    coords = [(-1, -1), (-1, -1), (-1, -1)]
 
 # Infinity + naturality 
 
-    if math.isnan(a) or math.isnan(b) or math.isnan(c):
-        logger.warning("NaN values parsed: a=%s, b=%s, c=%s", a, b, c)
-        return "", nan_coords
-
     if not (math.isfinite(a) and math.isfinite(b) and math.isfinite(c)):
-        logger.warning("Inf/not finite values parsed: a=%s, b=%s, c=%s", a, b, c)
-        return "Not a triangle", invalid_coords
-
+        logger.warning(
+            "NaN/Inf values parsed: a=%s, b=%s, c=%s",
+            a, b, c,
+        )
+        return "Not a triangle", coords
     if a <= 0 or b <= 0 or c <= 0:
         logger.warning(
             "Non-positive values: a=%s, b=%s, c=%s", a, b, c,
         )
-        return "Not a triangle", invalid_coords
+        return "Not a triangle", coords
 
 # Triangle equality principle 
 
@@ -80,14 +79,14 @@ def solve(s1: str, s2: str, s3: str):
             "Triangle equality is not respected: a=%s, b=%s, c=%s",
             a, b, c,
         )
-        return "Not a triangle", invalid_coords
+        return "Not a triangle", coords
 
 # Define triangle type
 
     if a == b and b == c:
         tri_type = "Equilateral (равносторонний)"
     elif a==b or b==c or a==c:
-        tri_type = "Isosceles (равнобедренный)"
+        tri_type = " Isosceles (равнобедренный)"
     else:
         tri_type = "Scalene (разносторонний)"
 
