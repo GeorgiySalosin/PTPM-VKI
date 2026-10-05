@@ -55,12 +55,12 @@ class TestTrianglesTypeAndCoordinates(unittest.TestCase):
         self.assertEqual(tri_type, "Equilateral (равносторонний)")
         self.assertEqual(coords, [(10, 90), (90, 90), (50, 21)])
 
-    def test_isosceles_triangle_type_has_no_leading_space(self):
+    def test_isosceles_triangle_type_and_coordinates(self):
         tri_type, coords = solve("3", "3", "4")
         self.assertEqual(tri_type, "Isosceles (равнобедренный)")
         self.assertEqual(coords, [(10, 90), (70, 90), (17, 30)])
 
-    def test_scalene_triangle_type_for_3_4_5(self):
+    def test_scalene_triangle_type_and_coordinates(self):
         tri_type, coords = solve("3", "4", "5")
         self.assertEqual(tri_type, "Scalene (разносторонний)")
         self.assertEqual(coords, [(10, 90), (58, 90), (10, 26)])
