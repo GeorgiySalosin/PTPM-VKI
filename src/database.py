@@ -20,7 +20,6 @@ class TriangleDatabase:
         self.connection = sqlite3.connect(db_path)
         # Удобно получать строки как dict-подобные объекты
         self.connection.row_factory = sqlite3.Row
-        self._create_table()
 
 
     def add_triangle(
