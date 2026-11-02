@@ -21,19 +21,19 @@ class TestPasswordValidator(unittest.TestCase):
     # ---------- 2. Граничные значения длины (BVA) ----------
 
     def test_boundary_length_7(self):
-        # 7 символов: a + A + 1 + ! + ... ровно 7
+        # 7 символов
         self.assertFalse(validate_password("Aa1!aaa"))
 
     def test_boundary_length_8(self):
-        # 8 символов: нижняя граница
+        # 8 символов
         self.assertTrue(validate_password("Aa1!aaaa"))
 
     def test_boundary_length_20(self):
-        # 20 символов: верхняя граница
+        # 20 символов
         self.assertTrue(validate_password("Aa1!" + "a" * 16))
 
     def test_boundary_length_21(self):
-        # 21 символ: на 1 больше верхней границы
+        # 21 символ
         self.assertFalse(validate_password("Aa1!" + "a" * 17))
 
     # ---------- 3. Классы эквивалентности ----------
