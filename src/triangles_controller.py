@@ -1,8 +1,7 @@
-from typing import Optional
-
 from database import TriangleDatabase
 from triangles import solve
 from user_interface import UserInterface
+from notifier import Notifier
 
 
 class TriangleController:
@@ -12,7 +11,7 @@ class TriangleController:
         self,
         ui: UserInterface,
         db: TriangleDatabase,
-        notifier,
+        notifier: Notifier,
     ):
         self.ui = ui
         self.db = db
