@@ -34,13 +34,13 @@ class ConsoleUserInterface(UserInterface):
     Читает данные через input(), пишет через print().
     """
 
-    def __init__(self, input_func=input, output_func=print):
+    def __init__(self, input_func=None, output_func=None):
         """
         :param input_func: функция ввода (по умолчанию input) — удобно подменять в тестах.
         :param output_func: функция вывода (по умолчанию print) — удобно подменять в тестах.
         """
-        self._input = input_func
-        self._output = output_func
+        self._input = input_func if input_func is not None else input
+        self._output = output_func if output_func is not None else print
 
     def get_triangle_sides(self) -> tuple[float, float, float]:
         """
