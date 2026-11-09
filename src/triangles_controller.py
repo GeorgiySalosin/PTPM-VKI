@@ -5,7 +5,7 @@ from notifier import Notifier
 
 
 class TriangleController:
-    """Бизнес-логика сквозного сценария (см. исходный docstring)."""
+    """Бизнес-логика сквозного сценария."""
 
     def __init__(
         self,
