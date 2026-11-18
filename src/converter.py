@@ -16,7 +16,7 @@ class Converter:
         if x == 0.0:
             raise ValueError("x не может быть равен 0.0")
 
-        if x >= -30.5:
+        if x >= -30.4:
             return int(x) - 5
 
         return -2000

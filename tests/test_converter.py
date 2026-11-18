@@ -58,7 +58,7 @@ class TestConverterPositiveRange(unittest.TestCase):
 
 
 class TestConverterNegativeRange(unittest.TestCase):
-    """x ∈ [-30.5; 0) → int(x) - 5."""
+    """x ∈ [-30.4; 0) → int(x) - 5."""
 
     def test_upper_boundary_minus_one_tenth(self):
         self.assertEqual(Converter.do(-0.1), -5)
@@ -72,9 +72,6 @@ class TestConverterNegativeRange(unittest.TestCase):
     def test_negative_fractional_minus_5(self):
         self.assertEqual(Converter.do(-15.7), -20)
 
-    def test_left_boundary_minus_30_5(self):
-        self.assertEqual(Converter.do(-30.5), -35)
-
     def test_left_boundary_minus_30_4(self):        # -30.4 ЗДЕСЬ
         self.assertEqual(Converter.do(-30.4), -35)
 
@@ -83,12 +80,15 @@ class TestConverterNegativeRange(unittest.TestCase):
 
 
 class TestConverterLowerRange(unittest.TestCase):
-    """x ∈ (-∞; -30.4] → -2000."""
+    """x ∈ (-∞; -30.5] → -2000."""
 
     def test_below_boundary_returns_minus_2000(self):
         for x in (-30.6, -31.0, -94.5, -1000.0, -1e6):
             with self.subTest(x=x):
                 self.assertEqual(Converter.do(x), -2000)
+
+    def test_right_boundary_minus_30_5_returns_minus_2000(self):    # -30.5 теперь входит в этот диапазон
+        self.assertEqual(Converter.do(-30.5), -2000)
 
     def test_returns_int_type(self):
         self.assertIsInstance(Converter.do(-94.5), int)
